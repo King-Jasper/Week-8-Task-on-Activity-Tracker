@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1>ActivityTracker</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Pending Tasks</h2>
+          <p>10 tasks</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>In Progress Tasks</h2>
+          <p>5 tasks</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Done Tasks</h2>
+          <p>15 tasks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form method="post" th:action="@{/tasks/search}">
+    <div class="form-group">
+      <input type="search" class="form-control" id="search" name="query" placeholder="Search tasks...">
+    </div>
+    <div class="form-group">
+      <select class="form-control" id="status" name="status">
+        <option value="">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a th:href="@{/tasks/add}" class="btn btn-primary">Add Task</a>
+  </form>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Task</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th>Completed at</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Example task rows (replace with dynamic data from search results) -->
+    <tr th:each="task : ${tasks}">
+      <td th:text="${task.title}"></td>
+      <td th:text="${task.description}"></td>
+      <td th:text="${task.status}"></td>
+      <td th:text="${task.createdAt}"></td>
+      <td th:text="${task.updatedAt}"></td>
+      <td th:text="${task.completedAt}"></td>
+      <td>
+        <a th:href="@{/tasks/task-detail/{id}(id=${task.id})}" class="btn btn-primary">View Task</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

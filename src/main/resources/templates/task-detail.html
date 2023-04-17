@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>View Activity</title>
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<main>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-6 mx-auto">
+
+                <div class="card my-5">
+
+                    <div class="card-header">
+
+                        <h2 th:text="${task.title}"></h2>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <h5 th:text="${task.description}" class="card-title"></h5>
+                        <p>Status: <span class="badge badge-success" th:text="${task.status}"></span></p>
+                        <p>Created: <span th:text="${task.createdAt}"></span></p>
+                        <p>Updated: <span th:text="${task.updatedAt}"></span></p>
+                        <p><span th:text="${task.completedAt}"></span></p>
+
+                        <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="btn btn-primary">Edit Activity</a>
+
+                        <a th:href="@{/tasks/delete/{id}(id=${task.id})}" class="btn btn-danger">Delete Activity</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="bg-light text-center py-3">
+
+    <div class="container">
+
+        <span>© 2023 My Website. All rights reserved.</span>
+
+    </div>
+
+</footer>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmIcbJ6K7Q6IpjqB6ktW"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
